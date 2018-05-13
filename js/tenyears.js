@@ -47,7 +47,7 @@ TenyearsContract.prototype = {
         if (this.isUserAddressExists(from)) {
             var user = this.userPool.get(from);
             var now = new Date().getTime();
-            if ( (now - user.timestamp) < 200*1000 )
+            if ( (now - user.timestamp) < 10 * 365 * 24 * 3600 * 1000 )
             {
                 throw new Error("Sorry, you can't withdraw now.");
             }

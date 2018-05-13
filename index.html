@@ -11,12 +11,12 @@
         var NebPay = require("nebpay");
         var nebPay = new NebPay();
         //to check if the extension is installed
-        //if the extension is installed, var "webExtensionWallet" will be injected in to web page 579674df2a2ac1f28ac8fbb4d625edcd3f6b141ed8a83b0644278a1a9c136cfd
+        //if the extension is installed, var "webExtensionWallet" will be injected in to web page 5b286fb5ecfb1ee2cd3f80108fb170a00f4003704a035da4e981873234a5c8f6
         setTimeout(function () { if (typeof (webExtensionWallet) === "undefined") {
                 alert("请先安装星云钱包插件.");
         }}, 500); //等待加载钱包
         function onClickCallDapp(value,callFunction) {
-                var to = "n1nRd7wUxzxmmUrteG52FTBL3HcWjAPn6a4"; //合约地址
+                var to = "n1qR33gTSu77H9X7TB3rV72tpJuhMMv7WCh"; //合约地址
                 var callArgs = ""; 
                 nebPay.call(to,
                 value,
