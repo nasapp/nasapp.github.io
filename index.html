@@ -1,0 +1,72 @@
+﻿<!doctype html>
+<html>
+<head>
+<title>十币存十年</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<script src=js/jquery.slim.min.js></script>
+<script src=js/nebPay.js></script>
+</head>
+<body>
+<script>
+        var NebPay = require("nebpay");
+        var nebPay = new NebPay();
+        //to check if the extension is installed
+        //if the extension is installed, var "webExtensionWallet" will be injected in to web page 579674df2a2ac1f28ac8fbb4d625edcd3f6b141ed8a83b0644278a1a9c136cfd
+        setTimeout(function () { if (typeof (webExtensionWallet) === "undefined") {
+                alert("请先安装星云钱包插件.");
+        }}, 500); //等待加载钱包
+        function onClickCallDapp(value,callFunction) {
+                var to = "n1nRd7wUxzxmmUrteG52FTBL3HcWjAPn6a4"; //合约地址
+                var callArgs = ""; 
+                nebPay.call(to,
+                value,
+                callFunction,
+                callArgs,
+                {
+                        qrcode: {
+                        showQRCode: false
+                        },
+                        goods: {
+                        name: "tenyears",
+                        desc: "save 10 nas ten years"
+                        },
+                        listener: cbCallDapp
+                });
+        }
+        function cbCallDapp(resp) {
+                console.log("callback resp: " + JSON.stringify(resp));
+        }
+</script>       
+<nav class="navbar navbar-default navbar-fixed-top">
+<div class="container">
+        <div class="navbar-header">
+        十币存十年
+        </div>
+        <ul class="nav navbar-nav">
+        <li><a class="nav-link link " href="https://github.com/ChengOrangeJu/WebExtensionWallet" target="_blank">安装星云钱包插件</a>
+        </li></ul>
+</div>
+</nav>
+<div class="container">
+        <p>
+        曾经比特币在10美元一个的时候，我买过10个比特币，后来涨了10倍时就卖掉了。为此我追悔莫及，如果上天再给我一个机会的话，我一定不会那么快卖掉，如果非要有个期限，我希望是十年。当年比特币不支持智能合约，现在NAS就是一个新的机会，十年内一定会涨100倍，为了不重蹈覆辙，我写了一个智能合约，存入10个NAS，十年后才能取出。
+        </p>
+        <div style="text-align: center">
+                <button class="btn btn-primary btn-lg" type="button" 
+                onclick="onClickCallDapp(10,'deposit');" style="width:180px">
+                        存入10个NAS
+                </button>
+                <button class="btn btn-success btn-lg" type="button" 
+                onclick="onClickCallDapp(0,'withdraw');" style="width:180px">
+                        取回10个NAS
+                </button>
+        </div>
+        <div>
+        注意，一旦存入，10年内无法取出，请谨慎操作。请保存好钱包和密码，记住以下合约地址。建议用户创建自己的智能合约。
+        </div>
+        <div>
+        <a href="https://github.com/nasapp/nasapp.github.io" target="_blank">Github</a>
+        </div>
+</div>
+</body>
+</html>
